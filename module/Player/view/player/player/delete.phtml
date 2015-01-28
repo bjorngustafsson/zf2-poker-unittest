@@ -1,0 +1,25 @@
+<?php $this->headScript()->appendFile('/zend/pokertest/public/js/poker.js'); ?>
+<?php
+
+ $title = 'Ta bort spelare';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+
+ <p>Är du säker att du vill ta bort
+     '<?php echo $this->escapeHtml($player->PlayerName); ?>'?
+ </p>
+ <?php
+ $url = $this->url('player', array(
+     'action' => 'delete',
+     'id'     => $this->id,
+ ));
+ ?>
+<form action="<?php echo $url; ?>" method="post">
+    <div>
+        <input type="hidden" name="id" value="<?php echo (int) $player->id; ?>" />
+        <input type="submit" class="btn btn-danger" name="del" value="Ja" />
+        <input type="submit" class="btn btn-info" name="del" value="Nej" />
+    </div>
+</form>
+

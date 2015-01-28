@@ -1,0 +1,29 @@
+<?php $this->headScript()->appendFile('/zend/pokertest/public/js/poker.js'); ?>
+<?php $title = 'Ändra spelare';
+ $this->headTitle($title); ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+
+ <?php
+ $form = $this->form;
+ $form->setAttribute('action', $this->url(
+     'player',
+     array(
+         'action' => 'edit',
+         'id'     => $this->id,
+     )
+ ));
+ $form->prepare();
+
+ echo $this->form()->openTag($form);
+ echo $this->formHidden($form->get('id'));
+ echo $this->formRow($form->get('PlayerName')) . "<br/>" ;
+ echo $this->formRow($form->get('Hands')). "<br/>" ;
+ echo $this->formRow($form->get('vpip')). "<br/>" ;
+ echo $this->formRow($form->get('pfr')). "<br/>" ;
+ echo $this->formRow($form->get('threebet')). "<br/>" ;
+ echo $this->formRow($form->get('squeeze')). "<br/>" ;
+ echo $this->formRow($form->get('captcha')). "<br/>" ;
+
+ echo $this->formSubmit($form->get('submit'));
+ echo $this->form()->closeTag();
+ ?>

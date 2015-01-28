@@ -1,0 +1,89 @@
+<?php $this->headScript()->appendFile('/zend/pokertest/public/js/poker.js'); ?>
+<?php
+$title = 'Databas pokerspelare';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a class="addplayer btn btn-success" href="<?php echo $this->url('player', array('action'=>'add'));?>">Lägg in en ny spelare</a>
+</p>
+
+<table class="maintable">
+    <thead>
+        <tr>
+            <th>Spelare</th>
+            <th>Antal Händer</th>
+            <th>VPIP</th>
+            <th>PFR</th>
+            <th>3bet</th>
+            <th>Squeeze</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+
+    <?php foreach ($players as $player) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($player->PlayerName);?></td>
+            <td><?php echo $this->escapeHtml($player->Hands);?></td>
+
+            <td><?php
+                //This can be done better using Jquery or LESS or SASS
+                if ($this->escapeHtml($player->vpip) > 21 ){
+                    echo "<span class ='value-danger'>" . $this->escapeHtml($player->vpip) . "%" . "</span>";
+                }
+                else if ($this->escapeHtml($player->vpip) < 17){
+                    echo "<span class ='value-safe'>" . $this->escapeHtml($player->vpip) . "%" . "</span>" ;
+                }
+                else
+                    echo $this->escapeHtml($player->vpip) . "%";
+                ?>
+            </td>
+
+            <td><?php
+                if ($this->escapeHtml($player->pfr) > 17 ){
+                    echo "<span class ='value-danger'>" . $this->escapeHtml($player->pfr) . "%" . "</span>" ;
+                }
+                else if ($this->escapeHtml($player->pfr) < 12){
+                    echo "<span class ='value-safe''>" . $this->escapeHtml($player->pfr) . "%" . "</span>" ;
+                }
+                else
+                    echo $this->escapeHtml($player->pfr) . "%";
+                ?>
+            </td>
+
+            <td><?php
+                if ($this->escapeHtml($player->threebet) > 8 ){
+                    echo "<span class ='value-danger'>" . $this->escapeHtml($player->threebet) . "%" . "</span>" ;
+                }
+                else if ($this->escapeHtml($player->threebet) < 4){
+                    echo "<span class ='value-safe'>" . $this->escapeHtml($player->threebet) . "%" . "</span>" ;
+                }
+                else
+                    echo $this->escapeHtml($player->threebet) . "%" ;
+                ?>
+            </td>
+
+            <td><?php
+                if ($this->escapeHtml($player->squeeze) > 7 ){
+                    echo "<span class ='value-danger'>" . $this->escapeHtml($player->squeeze) . "%" . "</span>" ;
+                }
+                else if ($this->escapeHtml($player->squeeze) < 3){
+                    echo "<span class ='value-safe'>" . $this->escapeHtml($player->squeeze) . "%" . "</span>" ;
+                }
+                else
+                    echo $this->escapeHtml($player->squeeze) . "%" ;
+                ?>
+            </td>
+
+            <td>
+                <a class="btn btn-info" href="<?php echo $this->url('player',
+                    array('action'=>'edit', 'id' => $player->id));?>">Edit</a>
+                <a class="btn btn-danger" href="<?php echo $this->url('player',
+                    array('action'=>'delete', 'id' => $player->id));?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+
