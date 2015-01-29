@@ -7,8 +7,8 @@ A simple database with online poker players, created with Zend framework 2 and b
 This is mostly for reviewing and cannot be run directly since the Zend Framework 2 is required and is not included here but excluded by the gitignore.
 
 ------------
-The unit tests are in folder
-/module/Player/test/PlayerTest
+The unit tests are in folder:
+[/module/Player/test/PlayerTest](/module/Player/test/PlayerTest)
 
 ------------
 
