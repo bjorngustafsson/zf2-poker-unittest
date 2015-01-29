@@ -8,7 +8,7 @@ This is mostly for reviewing and cannot be run directly since the Zend Framework
 
 ------------
 The unit tests are in folder:
-[/module/Player/test/PlayerTest](/module/Player/test/PlayerTest)
+[module/Player/test/PlayerTest](module/Player/test/PlayerTest)
 
 ------------
 
